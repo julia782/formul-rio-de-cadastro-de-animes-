@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Animes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+    <style>
+    body {
+        
+        font-family: Arial, sans-serif;
+        background-color:rgb(250, 227, 231);
+        padding: 20px;
+    }
+    
+    h1, h2 {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        color: #333;
+    }
+    
+    form {
+        background-color:white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        margin-bottom: 30px;
+    }
+    
+    form label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+    
+    form input, form select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+        border: 1px solid pink;
+    }
+    
+    button {
+        padding: 10px 15px;
+        background-color: pink;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    button:hover {
+        background-color: #218838;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: rgb(255, 255, 255);g
+    }
+    
+    table, th, td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+    }
+    
+    th {
+        
+        background-color: rgb(255, 255, 255);
+    }
+    </style>
+<body>
+    <h1>CADASTRO DE ANIMES</h1>
+    
+    <form id="animeForm">
+        <label for="nome">Nome do Anime:</label>
+        <input type="text" id="nome" name="nome" required><br>
+
+        <p></p>
+
+        <label for="genero">Gênero:</label>
+        <select id="genero" name="genero" required>
+            <option value="Terror">Terror</option>
+            <option value="Comédia">Comédia</option>
+            <option value="Romance">Romance</option>
+            <option value="Ação">Ação</option>
+            <option value="Isekai">Isekai</option>
+            <option value="Outros">Outros</option>
+        </select><br>
+
+        <p></p>
+
+        <label for="anoDeLancamento">Ano de Lançamento:</label>
+        <input type="number" id="ano" name="ano" min="1900" max="2024" required><br>
+
+        <p></p>
+
+        <label for="nota">Nota de 0 a 10:</label>
+        <input type="number" id="nota" name="nota" min="0" max="10" step="0.1" required><br>
+
+        <p></p>
+
+        <button type="submit">ENVIAR</button>
+    </form>
+
+    <h2>Animes Cadastrados</h2>
+    <table id="animeTable">
+        <thead>
+            <tr>
+                <th>Nome do Anime</th>
+                <th>Gênero</th>
+                <th>Ano de Lançamento</th>
+                <th>Nota</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Linhas dinâmicas aqui -->
+        </tbody>
+    </table>
+
+    <script>
+        // Função para capturar os dados e adicionar na tabela
+        document.getElementById("animeForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Impede o envio do formulário e recarregamento da página
+
+            // Capturando valores do formulário
+            const nome = document.getElementById("nome").value;
+            const genero = document.getElementById("genero").value;
+            const ano = document.getElementById("ano").value;
+            const nota = document.getElementById("nota").value;
+
+            // Inserindo os dados na tabela
+            const tabela = document.getElementById("animeTable").getElementsByTagName("tbody")[0];
+            const novaLinha = tabela.insertRow(); // Cria uma nova linha na tabela
+
+            const celulaNome = novaLinha.insertCell(0);
+            const celulaGenero = novaLinha.insertCell(1);
+            const celulaAno = novaLinha.insertCell(2);
+            const celulaNota = novaLinha.insertCell(3);
+
+            celulaNome.textContent = nome;
+            celulaGenero.textContent = genero;
+            celulaAno.textContent = ano;
+            celulaNota.textContent = nota;
+
+            // Limpando o formulário
+            document.getElementById("animeForm").reset();
+        });
+    </script>
+
+</body>
+</html>
